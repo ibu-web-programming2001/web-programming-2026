@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CampusEvents · Student Events</title>
+    <link rel="icon" href="assets/img/logo.svg" type="image/svg+xml">
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap 5 + Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <!-- DataTables (Bootstrap 5 styling) -->
+    <link href="https://cdn.datatables.net/2.1.8/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+    <!-- Select2 -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" rel="stylesheet">
+    <!-- Toastr -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css" rel="stylesheet">
+    <!-- SPApp + our styles -->
+    <link rel="stylesheet" href="css/spapp.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="app">
+
+    <!-- ===== Sidebar (offcanvas on mobile, fixed column on desktop) ===== -->
+    <aside class="sidebar">
+        <div class="offcanvas-lg offcanvas-start" tabindex="-1" id="sidebar">
+            <div class="offcanvas-header">
+                <a href="#dashboard" class="brand"><img src="assets/img/logo.svg" alt=""> CampusEvents</a>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" data-bs-target="#sidebar" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body flex-column">
+                <a href="#dashboard" class="brand d-none d-lg-flex"><img src="assets/img/logo.svg" alt=""> CampusEvents</a>
+
+                <nav class="nav flex-column" id="main-nav">
+                    <span class="nav-section">Campus</span>
+                    <a class="nav-link" href="#dashboard"><i class="bi bi-grid-1x2"></i> Dashboard</a>
+                    <a class="nav-link" href="#events"><i class="bi bi-calendar-event"></i> Events</a>
+                    <a class="nav-link" href="#clubs"><i class="bi bi-people-fill"></i> Clubs</a>
+                    <a class="nav-link" href="#categories"><i class="bi bi-tags"></i> Categories</a>
+                    <a class="nav-link" href="#registrations"><i class="bi bi-ticket-perforated"></i> Registrations</a>
+                    <a class="nav-link" href="#discover"><i class="bi bi-cloud-sun"></i> Weather planner</a>
+
+                    <span class="nav-section">Administration</span>
+                    <a class="nav-link" href="#users"><i class="bi bi-people"></i> Users</a>
+
+                    <span class="nav-section">Account</span>
+                    <a class="nav-link" href="#profile"><i class="bi bi-person-circle"></i> My profile</a>
+                    <a class="nav-link" href="#login"><i class="bi bi-box-arrow-right"></i> Log out</a>
+                </nav>
+            </div>
+        </div>
+    </aside>
+
+    <div class="app-main">
+        <!-- ===== Top bar ===== -->
+        <header class="topbar">
+            <button class="btn btn-light d-lg-none me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar" aria-label="Open menu">
+                <i class="bi bi-list"></i>
+            </button>
+            <span class="topbar-title" id="page-title">Dashboard</span>
+
+            <div class="dropdown ms-auto">
+                <button class="btn user-chip dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span class="avatar">LH</span>
+                    <span class="d-none d-sm-inline">Lejla Hadžić</span>
+                    <span class="badge text-bg-primary">admin</span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="#profile"><i class="bi bi-person me-2"></i>My profile</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#login"><i class="bi bi-box-arrow-right me-2"></i>Log out</a></li>
+                </ul>
+            </div>
+        </header>
+
+        <!-- ===== SPA views: every <section> is one page, loaded from views/ ===== -->
+        <!-- NOTE: the LAST section is the default view (see css/spapp.css) -->
+        <main id="spapp" role="main">
+            <section id="login" data-load="login.html"></section>
+            <section id="register" data-load="register.html"></section>
+            <section id="events" data-load="events.html"></section>
+            <section id="event-details" data-load="event-details.html"></section>
+            <section id="clubs" data-load="clubs.html"></section>
+            <section id="categories" data-load="categories.html"></section>
+            <section id="registrations" data-load="registrations.html"></section>
+            <section id="discover" data-load="discover.html"></section>
+            <section id="users" data-load="users.html"></section>
+            <section id="profile" data-load="profile.html"></section>
+            <section id="error_404" data-load="404.html"></section>
+            <section id="dashboard" data-load="dashboard.html"></section>
+        </main>
+    </div>
+</div>
+
+<!-- Libraries -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/2.1.8/js/dataTables.bootstrap5.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/highcharts@11.4.8/highcharts.js"></script>
+
+<!-- SPApp router + our application -->
+<script src="js/lib/jquery.spapp.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
