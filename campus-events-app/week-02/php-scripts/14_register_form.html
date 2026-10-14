@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<!--
+  Slide 25 – Working with forms: the browser sends the fields with POST
+  Open:  http://localhost:8000/14_register_form.html   (php -S localhost:8000 from this folder, or XAMPP)
+  Try:   leave email empty + remove "required" in DevTools -> the server still rejects it
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Register for an event</title>
+</head>
+<body>
+  <h1>Register for an event</h1>
+
+  <form action="14_register.php" method="POST">
+    <label>Email <input type="email" name="email" required></label>
+    <br><br>
+    <label>Event
+      <select name="event_id">
+        <option value="1">Quiz</option>
+        <option value="2">Hackathon</option>
+        <option value="3">Chess Cup</option>
+      </select>
+    </label>
+    <br><br>
+    <button type="submit">Register</button>
+  </form>
+
+  <p><small>required in HTML is comfort, not security – 14_register.php checks again.</small></p>
+</body>
+</html>
