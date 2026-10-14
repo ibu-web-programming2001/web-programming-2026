@@ -1,0 +1,6 @@
+# Secrets – only config.example.php is committed
+backend/config/config.php
+
+# Composer dependencies (run `composer install` to get them)
+backend/vendor/
+
