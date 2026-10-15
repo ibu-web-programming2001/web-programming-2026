@@ -3,6 +3,7 @@
  * VERSION 2 demo – php rest/dao/testv2.php
  * Prepared statements: the same attack does not work any more. Plus full CRUD.
  */
+header('Content-Type: text/plain'); // keeps the line breaks when opened in a browser; ignored on the CLI
 require_once __DIR__ . '/EventDaov2.php';
 
 $dao = new EventDaov2();

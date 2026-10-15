@@ -3,6 +3,7 @@
  * VERSION 3 demo – php rest/dao/testv3.php
  * get_all / get_by_id are inherited from BaseDaov1 – ClubDaov3 has no own methods at all.
  */
+header('Content-Type: text/plain'); // keeps the line breaks when opened in a browser; ignored on the CLI
 require_once __DIR__ . '/EventDaov3.php';
 require_once __DIR__ . '/ClubDaov3.php';
 

@@ -3,6 +3,7 @@
  * VERSION 4 (FINAL) demo – php rest/dao/testv4.php
  * Every table has a DAO; all of them inherit generic CRUD from BaseDao.
  */
+header('Content-Type: text/plain'); // keeps the line breaks when opened in a browser; ignored on the CLI
 require_once __DIR__ . '/UserDao.php';
 require_once __DIR__ . '/ClubDao.php';
 require_once __DIR__ . '/CategoryDao.php';

@@ -4,6 +4,7 @@
  * Shows why gluing values into SQL is dangerous.
  * (EventDaov1 has the DB password hard-coded – change it there if yours is not empty.)
  */
+header('Content-Type: text/plain'); // keeps the line breaks when opened in a browser; ignored on the CLI
 require_once __DIR__ . '/EventDaov1.php';
 
 $dao = new EventDaov1();

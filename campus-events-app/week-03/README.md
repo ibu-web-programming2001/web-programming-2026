@@ -21,11 +21,26 @@ All commands are run from the `backend` folder (run `composer install` once). **
 (`EventDaov1` has the DB password hard-coded – edit it if your local root password is not empty.)
 
 ## How to run
+Set up the database and config once:
 ```bash
 mysql -u root -p < database/campusevents.sql
 cp backend/config/config.example.php backend/config/config.php     # set your password
+```
+From the terminal (run from the `backend` folder):
+```bash
 cd backend
-php rest/dao/testv1.php     # ... testv2, testv3, testv4
+php rest/dao/testv1.php     # then testv2.php, testv3.php, testv4.php
+```
+Or, if the project is served by Apache (XAMPP/MAMP), open the script in the browser:
+```
+http://localhost/<your-project-folder>/backend/rest/dao/testv1.php
+```
+For example, with `campus-events-app` copied into `htdocs`:
+```
+http://localhost/campus-events-app/week-03/backend/rest/dao/testv1.php
+http://localhost/campus-events-app/week-03/backend/rest/dao/testv2.php
+http://localhost/campus-events-app/week-03/backend/rest/dao/testv3.php
+http://localhost/campus-events-app/week-03/backend/rest/dao/testv4.php
 ```
 Expected highlights:
 ```
