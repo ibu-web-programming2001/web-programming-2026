@@ -39,7 +39,8 @@ class EventDaov2
     public function get_by_id($id)
     {
         // Positional placeholder "?"
-        $statement = $this->connection->prepare("SELECT * FROM events WHERE id = ?");
+        $statement = $this->connection->prepare(
+            "SELECT * FROM events WHERE id = ?");
         $statement->execute([$id]);
         return $statement->fetch();
     }
@@ -47,7 +48,8 @@ class EventDaov2
     public function search_by_title($title)
     {
         // Named placeholder ":title" – even "x' OR '1'='1" is now just a strange title
-        $statement = $this->connection->prepare("SELECT * FROM events WHERE title LIKE :title");
+        $statement = $this->connection->prepare("SELECT * FROM 
+        events WHERE title LIKE :title");
         $statement->execute(['title' => '%' . $title . '%']);
         return $statement->fetchAll();
     }

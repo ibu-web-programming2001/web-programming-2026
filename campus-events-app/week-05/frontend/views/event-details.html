@@ -1,0 +1,75 @@
+<a href="#events" class="btn btn-link px-0 mb-3"><i class="bi bi-arrow-left"></i> Back to events</a>
+
+<div class="card mb-4">
+    <div class="card-body p-4">
+        <div class="row g-4">
+            <div class="col-md-4 col-lg-3">
+                <div class="event-banner event-banner-lg cat-music"><i class="bi bi-music-note-beamed"></i></div>
+            </div>
+            <div class="col-md-8 col-lg-9">
+                <span class="badge text-bg-light mb-2">Music</span>
+                <h1 class="h3 fw-bold mb-1">Welcome Concert</h1>
+                <p class="text-muted mb-3">by <a href="#clubs">IBU Music Club</a></p>
+                <p>Start the semester with live music from student bands, food trucks and a surprise headliner.</p>
+                <dl class="row small mb-4">
+                    <dt class="col-5 col-md-3 text-muted fw-normal">When</dt><dd class="col-7 col-md-9">10.10.2026 at 19:00</dd>
+                    <dt class="col-5 col-md-3 text-muted fw-normal">Where</dt><dd class="col-7 col-md-9">IBU Amphitheatre, Sarajevo</dd>
+                    <dt class="col-5 col-md-3 text-muted fw-normal">Seats</dt><dd class="col-7 col-md-9"><span class="text-success fw-semibold">198 of 200 seats left</span></dd>
+                </dl>
+                <button class="btn btn-primary"><i class="bi bi-ticket-perforated me-1"></i> Register</button>
+                <span class="text-muted small ms-2">Max. 3 upcoming registrations per student</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-3">
+    <!-- External API feature (planned in week 1, implemented in week 6): weather on the event day -->
+    <div class="col-lg-4">
+        <div class="card h-100">
+            <div class="card-header"><i class="bi bi-cloud-sun me-1"></i> Weather on the day</div>
+            <div class="card-body weather-card">
+                <i class="bi bi-cloud-sun"></i>
+                <div class="h3 fw-bold mt-2 mb-0">17° / 9°</div>
+                <div class="text-muted">Partly cloudy · 10% rain</div>
+                <div class="small text-muted mt-2">Forecast by Open-Meteo</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reviews -->
+    <div class="col-lg-4">
+        <div class="card h-100">
+            <div class="card-header">Reviews</div>
+            <ul class="list-group list-group-flush" id="review-list">
+                <li class="list-group-item text-muted py-4 text-center">No reviews yet – be the first after the event.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Write a review -->
+    <div class="col-lg-4">
+        <div class="card h-100">
+            <div class="card-header">Write a review</div>
+            <div class="card-body">
+                <form id="review-form" novalidate>
+                    <div class="mb-3">
+                        <label class="form-label" for="review-rating">Rating</label>
+                        <select class="form-select" id="review-rating" name="rating">
+                            <option value="5">★★★★★ – Amazing</option>
+                            <option value="4">★★★★ – Good</option>
+                            <option value="3">★★★ – OK</option>
+                            <option value="2">★★ – Poor</option>
+                            <option value="1">★ – Terrible</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="review-comment">Comment</label>
+                        <textarea class="form-control" id="review-comment" name="comment" rows="3" placeholder="How was it?"></textarea>
+                    </div>
+                    <button type="button" class="btn btn-primary">Submit review</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
