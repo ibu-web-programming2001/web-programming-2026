@@ -1,0 +1,103 @@
+### CampusEvents API – manual requests
+### Open in VS Code (extension "REST Client") or PhpStorm and click "Send Request".
+@base = http://localhost:8000/backend
+
+### All events
+GET {{base}}/events
+
+### One event (200) and a missing one (404)
+GET {{base}}/events/1
+
+###
+GET {{base}}/events/999
+
+### Reviews of an event
+GET {{base}}/events/9/reviews
+
+### Create an event (201)
+POST {{base}}/events
+Content-Type: application/json
+
+{
+  "title": "Intro to Docker Workshop",
+  "club_id": 2,
+  "category_id": 2,
+  "location": "FENS Lab 1",
+  "city": "Sarajevo",
+  "starts_at": "2026-12-03 17:00",
+  "capacity": 25,
+  "description": "Containers for your web project – bring a laptop."
+}
+
+### Invalid event (400)
+POST {{base}}/events
+Content-Type: application/json
+
+{ "title": "", "club_id": 1, "category_id": 1, "location": "Hall", "starts_at": "2026-12-03 17:00", "capacity": 10 }
+
+### Update an event (move the Movie Night to a bigger hall)
+PUT {{base}}/events/5
+Content-Type: application/json
+
+{ "title": "Movie Night: Classic Cinema", "club_id": 4, "category_id": 4, "location": "IBU Amphitheatre", "city": "Sarajevo", "starts_at": "2026-10-14 20:00", "capacity": 200 }
+
+### Delete an event with registrations (400)
+DELETE {{base}}/events/1
+
+### Register for an event (201)
+POST {{base}}/registrations
+Content-Type: application/json
+
+{ "user_id": 3, "event_id": 12 }
+
+### Registrations of one student
+GET {{base}}/registrations?user_id=2
+
+### Cancel a registration
+PUT {{base}}/registrations/1/cancel
+
+### Mark a registration as attended
+PUT {{base}}/registrations/4/attend
+
+### Dashboard numbers
+GET {{base}}/dashboard
+
+### Unknown endpoint (404 JSON)
+GET {{base}}/something
+
+### ---------- External API (week 06) ----------
+
+### 7-day forecast for a city
+GET {{base}}/weather/forecast?city=Mostar&days=7
+
+### Unknown city (404)
+GET {{base}}/weather/forecast?city=Xqzzyy
+
+### Weather on the day of an event (Welcome Concert)
+GET {{base}}/events/1/weather
+
+### Event more than 16 days ahead – available=false
+GET {{base}}/events/11/weather
+
+### v1 – raw Open-Meteo response
+GET {{base}}/weather/v1/forecast?city=Sarajevo
+
+### ---------- Step-by-step versions ----------
+
+### v1 – not found, but status 200
+GET {{base}}/event_by_id?id=999
+
+### v1 – invalid, but status 200
+POST {{base}}/add_event
+Content-Type: application/json
+
+{ "title": "" }
+
+### v2 – 404
+GET {{base}}/v2/events/999
+
+### v2 – 400
+POST {{base}}/v2/events
+Content-Type: application/json
+
+{ "title": "" }
