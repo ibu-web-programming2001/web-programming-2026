@@ -1,0 +1,12 @@
+{
+    "name": "ibu/campusevents-backend",
+    "description": "CampusEvents – Lab 03 (DAO layer)",
+    "type": "project",
+    "require": {
+        "php": ">=8.2",
+        "robmorgan/phinx": "^0.16"
+    },
+    "scripts": {
+        "migrate": "phinx migrate"
+    }
+}
