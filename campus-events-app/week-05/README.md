@@ -1,6 +1,7 @@
 # Week 05 – Presentation Layer
 
-> Builds on **week 04**. Frontend unchanged. Part of **Milestone 3** 
+> Builds on **week 04**. Frontend unchanged.
+> Routes are part of Milestone 3.
 
 ## Learning goals
 - Design **RESTful URLs**: resources (nouns) + HTTP methods (verbs).
@@ -8,12 +9,21 @@
 - Answer with the **correct status code**: 200, 201, 400, 404, 500.
 - Handle errors **once, globally** instead of `try/catch` in every route.
 
-## Versions (all three run at the same time – compare them in Postman)
-| Step | File | Example calls | What it shows |
-|------|------|---------------|---------------|
-| v1 | `rest/routes/EventRoutesv1.php` | `GET /get_events`, `GET /event_by_id?id=999`, `POST /add_event`, `POST /delete_event?id=3` | verbs in URLs, everything POST/GET, **always 200** (errors hidden inside the JSON) |
-| v2 | `rest/routes/EventRoutesv2.php` | `GET /v2/events/999` → 404, `POST /v2/events` → 201/400 | RESTful URLs + status codes, but a **try/catch in every route** |
-| v3 (final) | `rest/routes/*Routes.php` + `Flight::map('error')` in `index.php` | `GET /events/999` → 404 … all entities | one line per route, errors handled **once, globally** |
+## Versions (show them in this order)
+| Step | Files | What it shows | Run |
+|------|-------|---------------|-----|
+| v1 | `rest/routes/EventRoutesv1.php` | verbs in URLs, everything POST/GET, **always 200** (errors hidden inside the JSON) | `GET /event_by_id?id=999` |
+| v2 | `rest/routes/EventRoutesv2.php` | RESTful URLs + status codes, but a **try/catch in every route** | `GET /v2/events/999` → 404 |
+| v3 (final) | `rest/routes/*Routes.php` + `Flight::map('error')` in `index.php` | one line per route, errors handled **once, globally**, all entities | `GET /events/999` → 404 |
+
+All three run at the same time, so they can be compared side by side in Postman.
+
+## What's new since week 04
+| Path | Change |
+|------|--------|
+| `backend/rest/routes/EventRoutesv1.php`, `EventRoutesv2.php` | **New** – the step-by-step versions |
+| `backend/rest/routes/*Routes.php` | **New** – full CRUD for 6 entities + dashboard (ids restricted with `@id:[0-9]+`) |
+| `backend/index.php` | Registers all services; loads v1, v2 (under `/v2`) and the final routes; `Flight::map('error')` + `Flight::map('notFound')` return JSON |
 
 ## API overview (final version)
 | Method | URL | Status | Description |
@@ -28,36 +38,50 @@
 | PUT | `/registrations/{id}/cancel`, `/registrations/{id}/attend` | 200 / 400 | actions on a resource |
 | GET | `/dashboard` | 200 | statistics |
 
-## What's new since week 04
-| Path | Change |
-|------|--------|
-| `backend/rest/routes/EventRoutesv1.php`, `EventRoutesv2.php` | **New** – the step-by-step versions |
-| `backend/rest/routes/*Routes.php` | **New** – full CRUD for 6 entities + dashboard (ids restricted with `@id:[0-9]+`) |
-| `backend/index.php` | Registers all services; loads v1, v2 (under `/v2`) and the final routes; `Flight::map('error')` + `Flight::map('notFound')` return JSON |
-
 ## How to run
-Run from this folder:
-```bash
-php -S localhost:8000 server.php
+Start MySQL, then:
+1. Import `database/campusevents.sql` in phpMyAdmin.
+2. Copy `backend/config/config.example.php` to `backend/config/config.php` and set your database credentials.
+3. Install the dependencies from the `backend` folder:
+   ```bash
+   cd backend
+   composer install
+   ```
+
+### With XAMPP/WAMP (Apache)
+Copy `campus-events-app` into `htdocs` (XAMPP) or `www` (WAMP) and start Apache. The base URL is:
 ```
-The API is then available under `http://localhost:8000/backend`.
-If the project is served by Apache (XAMPP/MAMP) instead, `backend/.htaccess` does the routing and the base URL is
-`http://localhost/<your-project-folder>/backend`, e.g. with `campus-events-app` copied into `htdocs`:
+http://localhost/<your-project-folder>/backend
+```
+For example, with `campus-events-app` copied into `htdocs` or `www`:
 ```
 http://localhost/campus-events-app/week-05/backend
 ```
-The `rest/` folder is never part of the URL – all requests go through `backend/index.php`.
+`backend/.htaccess` sends every request to `backend/index.php`, so the `rest/` folder is never part of the URL.
+
+If every URL except `{base}/` gives an Apache 404, `mod_rewrite` is off. On WAMP, turn it on from the tray icon: *Apache → Apache modules → rewrite_module*.
+
+### With the PHP built-in server
+Run from the `week-05` folder:
+```bash
+php -S localhost:8000 server.php
+```
+The base URL is:
+```
+http://localhost:8000/backend
+```
 
 ### In the browser (GET only)
+Add these paths to your base URL (`{base}`):
 ```
-http://localhost:8000/backend/events
-http://localhost:8000/backend/events/1
-http://localhost:8000/backend/events/999          -> 404
-http://localhost:8000/backend/events/9/reviews
-http://localhost:8000/backend/registrations?user_id=2
-http://localhost:8000/backend/dashboard
-http://localhost:8000/backend/v2/events/999       -> v2 demo (404)
-http://localhost:8000/backend/event_by_id?id=999  -> v1 demo (200, error inside the JSON)
+{base}/events
+{base}/events/1
+{base}/events/999          -> 404
+{base}/events/9/reviews
+{base}/registrations?user_id=2
+{base}/dashboard
+{base}/v2/events/999       -> v2 demo (404)
+{base}/event_by_id?id=999  -> v1 demo (200, error inside the JSON)
 ```
 
 ### In Postman (all methods)
@@ -80,12 +104,13 @@ For `POST` and `PUT` set *Body → raw → JSON*.
 | POST | `{base}/add_event` | `{"title":""}` | v1 demo: 200 with error in JSON |
 | POST | `{base}/v2/events` | `{"title":""}` | v2 demo: 400 |
 
-Or with curl:
-```bash
-curl -i http://localhost:8000/backend/events/999
-curl -i -X POST http://localhost:8000/backend/categories -H "Content-Type: application/json" -d '{"name":"Workshops"}'
-curl -i -X PUT http://localhost:8000/backend/registrations/1/cancel
-curl -i -X DELETE http://localhost:8000/backend/categories/999
+Re-import `database/campusevents.sql` afterwards to reset the sample data.
+Expected error responses (shortened):
+```
+GET  {base}/events/999        404  {"error":"Event not found."}
+POST {base}/events            400  {"error":"Field 'title' is required."}
+GET  {base}/something         404  {"error":"Endpoint not found."}
+GET  {base}/event_by_id?id=999  200  {"success":false,"error":"Event not found."}
 ```
 
 ## Notes

@@ -1,7 +1,7 @@
 # Week 06 – OpenAPI Standard (+ External API)
 
 > Builds on **week 05**. Frontend unchanged.
-> Completes the backend part of **Milestone 3** (due Mon 23.11.2026): services, routes, OpenAPI, external API.
+> Completes the backend part of **Milestone 3**: services, routes, OpenAPI, external API.
 
 ## Learning goals
 - Describe an API with the **OpenAPI 3** standard and show it with **Swagger UI**.
@@ -9,11 +9,11 @@
 - Call a **third-party API** from the backend with cURL – safely:
   timeout, status check, JSON check, friendly error message, app keeps working.
 
-## Versions of the external API call
-| Step | Files | Call | What it shows |
-|------|-------|------|---------------|
-| v1 | `rest/services/OpenMeteoServicev1.php` | `GET /weather/v1/forecast?city=Sarajevo` | `file_get_contents`, **no timeout**, no error handling (unknown city → PHP warning), raw parallel arrays with weather *codes* sent to the client |
-| v2 (final) | `rest/services/OpenMeteoService.php` | `GET /weather/forecast?city=Sarajevo&days=7` | cURL with timeouts, status + JSON checks, friendly **503** / 404, one object per day with text + icon |
+## Versions (show them in this order)
+| Step | Files | What it shows | Run |
+|------|-------|---------------|-----|
+| v1 | `rest/services/OpenMeteoServicev1.php` | `file_get_contents`, **no timeout**, no error handling (unknown city → PHP warning), raw parallel arrays with weather *codes* sent to the client | `GET /weather/v1/forecast?city=Sarajevo` |
+| v2 (final) | `rest/services/OpenMeteoService.php` | cURL with timeouts, status + JSON checks, friendly **503** / 404, one object per day with text + icon | `GET /weather/forecast?city=Sarajevo&days=7` |
 
 ## What's new since week 05
 | Path | Change |
@@ -29,37 +29,51 @@
 | `backend/rest/services/EventService.php` | + `get_weather()` – event city + date → OpenMeteoService (a service using another service) |
 | `backend/rest/routes/WeatherRoutes.php` | **New** – `GET /weather/forecast?city=&days=` |
 | `backend/rest/routes/EventRoutes.php` | + `GET /events/{id}/weather` |
+| `docs/api.http` | **New** – manual requests for VS Code (REST Client) or PhpStorm; change `@base` when using XAMPP/WAMP |
 
 > ⚠️ **Update your `config.php`** – copy the three new `OPEN_METEO_*` methods from `config.example.php`.
 
 ## How to run
+Start MySQL, import `database/campusevents.sql`, then install the dependencies (PHP 8.2 or newer is required):
 ```bash
-cd backend && composer install && cd ..
+cd backend
+composer install
+```
+
+### With XAMPP/WAMP (Apache)
+Copy `campus-events-app` into `htdocs` (XAMPP) or `www` (WAMP) and start Apache. The base URL is:
+```
+http://localhost/<your-project-folder>/backend
+```
+For example, with `campus-events-app` copied into `htdocs` or `www`:
+```
+http://localhost/campus-events-app/week-06/backend
+```
+If every URL except `{base}/` gives an Apache 404, `mod_rewrite` is off. On WAMP, turn it on from the tray icon: *Apache → Apache modules → rewrite_module*.
+
+### With the PHP built-in server
+Run from the `week-06` folder:
+```bash
 php -S localhost:8000 server.php
 ```
-- Swagger UI: <http://localhost:8000/backend/public/v1/docs/>
-- Raw OpenAPI JSON: <http://localhost:8000/backend/public/v1/docs/swagger.php>
+The base URL is:
+```
+http://localhost:8000/backend
+```
 
-## Lecture demo script
-1. Open Swagger UI, *Try it out* on `GET /events/{id}` – the source is `getEventsById()` in `paths/EventPaths.php`.
-   Route code (`rest/routes/`) and its documentation (`paths/`) live in separate files – keep them in sync.
-2. Show `doc_setup.php`: `EventInput` (what the client sends) vs. `Event` (what the API returns, `allOf`).
-3. Call **v1** `GET /weather/v1/forecast?city=Sarajevo` (parallel arrays, `weather_code: 61` – what does 61 mean?),
-   then the final `GET /weather/forecast?city=Sarajevo` – our backend reshapes the response into one object per day
-   with `"description": "Light rain", "icon": "cloud-rain"`.
-4. Two API calls behind one endpoint: geocoding (city → coordinates) and forecast (coordinates → weather).
-   `GET /weather/forecast?city=Xqzzyy` → **404** in v2; in v1 → PHP warning + 500.
-5. `GET /events/1/weather` (in a few days) vs. `GET /events/11/weather` (more than 16 days ahead → `available: false`)
-   vs. `GET /events/9/weather` (event is over).
-6. **Failure demo:** set `OPEN_METEO_GEOCODING_URL` to `https://open-meteo.invalid` (or turn Wi-Fi off) →
-   503 *"The weather service is not available..."*, while `/events` still works. Then set it to
-   `http://10.255.255.1` (an address that never answers) → 503 after the 3-second connect timeout instead of hanging.
-
-## Notes
-- swagger-php 6 reads **attributes on classes/methods** only (found by reflection, so `swagger.php` `require_once`s the
-  files first). Old tutorials show `/** @OA\Get(...) */` doc blocks and `Generator::scan()` – that is swagger-php 3/4
-  and does not work with version 6.
-- Open-Meteo needs no API key. If your API needs a key (OpenWeatherMap, TMDB...), add `Config::WEATHER_API_KEY()`
-  the same way and **never commit it**.
-- Open-Meteo is free for non-commercial use (fair use, < 10 000 calls/day) – fine for the course project.
-- Failures are written with `error_log()` for now; week 07 adds a real error log file.
+### In the browser
+Add these paths to your base URL (`{base}`):
+```
+{base}/public/v1/docs/                      -> Swagger UI
+{base}/public/v1/docs/swagger.php           -> raw OpenAPI JSON
+{base}/weather/v1/forecast?city=Sarajevo    -> v1 (parallel arrays, weather codes)
+{base}/weather/forecast?city=Sarajevo&days=7
+{base}/weather/forecast?city=Xqzzyy         -> 404
+{base}/events/1/weather
+```
+Expected output (shortened):
+```
+GET {base}/weather/forecast?city=Sarajevo&days=1  200  {"city":"Sarajevo","country":"Bosnia and Herzegovina",...,"days":[{"date":"...","weather_code":61,"description":"Light rain","icon":"cloud-rain",...}]}
+GET {base}/weather/forecast?city=Xqzzyy           404  {"error":"No city called 'Xqzzyy' was found."}
+```
+The weather values change from day to day. Swagger UI and the weather endpoints need an internet connection.
