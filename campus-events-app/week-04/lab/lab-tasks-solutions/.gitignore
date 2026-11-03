@@ -1,0 +1,7 @@
+# Secrets – only config.example.php is committed
+backend/config/config.php
+
+# OS / editor files
+.DS_Store
+.idea/
+.vscode/
