@@ -1,0 +1,51 @@
+<div class="card auth-card">
+    <div class="card-body">
+        <div class="text-center mb-4">
+            <img src="assets/img/logo.svg" class="auth-logo mb-3" alt="CampusEvents">
+            <h1 class="h4 fw-bold mb-1">Create an account</h1>
+            <p class="text-muted mb-0">Join CampusEvents and never miss a campus event</p>
+        </div>
+
+        <form id="register-form" novalidate>
+            <div class="row g-3 mb-3">
+                <div class="col-sm-6">
+                    <label for="register-first-name" class="form-label">First name</label>
+                    <input type="text" class="form-control" id="register-first-name" name="first_name" autocomplete="given-name">
+                </div>
+                <div class="col-sm-6">
+                    <label for="register-last-name" class="form-label">Last name</label>
+                    <input type="text" class="form-control" id="register-last-name" name="last_name" autocomplete="family-name">
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="register-email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="register-email" name="email" placeholder="you@example.com" autocomplete="email">
+            </div>
+            <div class="mb-3">
+                <label for="register-faculty" class="form-label">Faculty <span class="text-muted">(optional)</span></label>
+                <select class="form-select" id="register-faculty" name="faculty">
+                    <option value="">–</option>
+                    <option>FENS</option>
+                    <option>FASS</option>
+                    <option>FBA</option>
+                    <option>FEDU</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="register-password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="register-password" name="password" autocomplete="new-password">
+                <div class="form-text">At least 8 characters, with a letter and a number.</div>
+            </div>
+            <div class="mb-4">
+                <label for="register-password-confirm" class="form-label">Confirm password</label>
+                <input type="password" class="form-control" id="register-password-confirm" name="password_confirm" autocomplete="new-password">
+            </div>
+            <!-- Week 1: static page – registration is connected in week 10. -->
+            <a href="#login" class="btn btn-primary w-100 py-2">Create account</a>
+        </form>
+
+        <p class="text-center text-muted mt-4 mb-0">
+            Already have an account? <a href="#login">Log in</a>
+        </p>
+    </div>
+</div>

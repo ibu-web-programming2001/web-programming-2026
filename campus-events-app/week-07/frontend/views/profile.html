@@ -1,0 +1,57 @@
+<div class="page-header">
+    <div>
+        <h1 class="page-title">My profile</h1>
+        <p class="page-subtitle">Your account details and campus activity.</p>
+    </div>
+</div>
+
+<div class="row g-3">
+    <div class="col-lg-4">
+        <div class="card h-100">
+            <div class="card-body text-center p-4">
+                <span class="avatar avatar-lg mb-3">LH</span>
+                <h2 class="h5 fw-bold mb-0">Lejla Hadžić</h2>
+                <p class="text-muted mb-2">admin@campusevents.ba</p>
+                <span class="badge text-bg-primary">admin</span>
+                <hr>
+                <div class="row text-center">
+                    <div class="col"><div class="stat-value">0</div><div class="stat-label">Upcoming events</div></div>
+                    <div class="col"><div class="stat-value">0</div><div class="stat-label">Reviews</div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-8">
+        <div class="card h-100">
+            <div class="card-header">Edit profile</div>
+            <div class="card-body">
+                <form id="profile-form" novalidate>
+                    <div class="row g-3">
+                        <div class="col-sm-6">
+                            <label class="form-label" for="profile-first-name">First name</label>
+                            <input type="text" class="form-control" id="profile-first-name" name="first_name" value="Lejla">
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="form-label" for="profile-last-name">Last name</label>
+                            <input type="text" class="form-control" id="profile-last-name" name="last_name" value="Hadžić">
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label" for="profile-email">Email</label>
+                            <input type="email" class="form-control" id="profile-email" value="admin@campusevents.ba" disabled>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="form-label" for="profile-password">New password</label>
+                            <input type="password" class="form-control" id="profile-password" name="password" placeholder="Leave empty to keep" autocomplete="new-password">
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="form-label" for="profile-password-confirm">Confirm new password</label>
+                            <input type="password" class="form-control" id="profile-password-confirm" name="password_confirm" autocomplete="new-password">
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-primary mt-4">Save changes</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
