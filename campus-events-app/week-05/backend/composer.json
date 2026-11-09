@@ -13,5 +13,10 @@
     "scripts": {
         "migrate": "phinx migrate",
         "seed": "phinx seed:run"
+    },
+    "config": {
+        "platform": {
+            "php": "8.2.4"
+        }
     }
 }

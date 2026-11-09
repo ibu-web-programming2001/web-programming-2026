@@ -1,0 +1,9 @@
+{
+    "name": "ibu/campusevents-backend",
+    "description": "CampusEvents – REST API for the IT 2001 Web Programming lab",
+    "type": "project",
+    "require": {
+        "php": ">=8.1",
+        "flightphp/core": "^3.19"
+    }
+}
