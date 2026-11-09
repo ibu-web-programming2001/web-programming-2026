@@ -4,6 +4,7 @@
  */
 
 Flight::route('GET /events', function () {
+   // Flight::json(Flight::request());  // for debugging only, shows query parameters
     Flight::json(Flight::event_service()->get_all());
 });
 

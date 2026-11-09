@@ -1,0 +1,165 @@
+/* =========================================================
+   CampusEvents – application styles (on top of Bootstrap 5)
+   ========================================================= */
+:root {
+    --brand: #7c3aed;
+    --brand-dark: #6d28d9;
+    --brand-soft: #f3effe;
+    --sidebar-bg: #111827;
+    --sidebar-text: #9ca3af;
+    --body-bg: #f4f6fb;
+    --border: #e5e7eb;
+    --radius: 0.9rem;
+    --bs-primary: #7c3aed;
+    --bs-primary-rgb: 124, 58, 237;
+    --bs-link-color: #7c3aed;
+    --bs-link-color-rgb: 124, 58, 237;
+}
+
+body {
+    font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: var(--body-bg);
+    color: #1f2937;
+}
+
+.btn-primary {
+    --bs-btn-bg: var(--brand);
+    --bs-btn-border-color: var(--brand);
+    --bs-btn-hover-bg: var(--brand-dark);
+    --bs-btn-hover-border-color: var(--brand-dark);
+    --bs-btn-active-bg: var(--brand-dark);
+    --bs-btn-disabled-bg: var(--brand);
+    --bs-btn-disabled-border-color: var(--brand);
+}
+.btn-outline-primary {
+    --bs-btn-color: var(--brand);
+    --bs-btn-border-color: var(--brand);
+    --bs-btn-hover-bg: var(--brand);
+    --bs-btn-hover-border-color: var(--brand);
+    --bs-btn-active-bg: var(--brand);
+}
+.text-bg-primary { background-color: var(--brand) !important; }
+.form-control:focus, .form-select:focus {
+    border-color: #c4b5fd;
+    box-shadow: 0 0 0 .2rem rgba(124, 58, 237, .15);
+}
+
+/* ---------- Layout ---------- */
+.app { display: flex; min-height: 100vh; }
+.app-main { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+
+/* ---------- Sidebar ---------- */
+.sidebar { flex: 0 0 260px; background: var(--sidebar-bg); }
+.sidebar .offcanvas-lg { --bs-offcanvas-bg: var(--sidebar-bg); --bs-offcanvas-width: 260px; color: var(--sidebar-text); }
+@media (min-width: 992px) {
+    .sidebar .offcanvas-lg { position: sticky; top: 0; height: 100vh; overflow-y: auto; }
+}
+@media (max-width: 991.98px) {
+    .sidebar { flex-basis: 0; }
+}
+.sidebar .offcanvas-body { padding: 1.25rem 1rem; }
+.brand {
+    display: flex; align-items: center; gap: .6rem;
+    font-weight: 700; font-size: 1.25rem; color: #fff; text-decoration: none;
+    margin: 0 .5rem 1.5rem;
+}
+.offcanvas-header .brand { margin: 0; }
+.brand img { width: 32px; height: 32px; }
+.sidebar .nav-section {
+    font-size: .7rem; text-transform: uppercase; letter-spacing: .08em;
+    color: #6b7280; margin: 1.25rem .9rem .4rem;
+}
+.sidebar .nav-link {
+    display: flex; align-items: center; gap: .75rem;
+    color: var(--sidebar-text); border-radius: .55rem;
+    padding: .6rem .9rem; margin-bottom: 2px; font-weight: 500;
+}
+.sidebar .nav-link i { font-size: 1.1rem; }
+.sidebar .nav-link:hover { color: #fff; background: rgba(255, 255, 255, .06); }
+.sidebar .nav-link.active { color: #fff; background: var(--brand); }
+
+/* ---------- Top bar ---------- */
+.topbar {
+    position: sticky; top: 0; z-index: 1020;
+    height: 64px; display: flex; align-items: center;
+    padding: 0 1.5rem; background: #fff; border-bottom: 1px solid var(--border);
+}
+.topbar-title { font-weight: 600; font-size: 1.05rem; }
+.user-chip { display: flex; align-items: center; gap: .5rem; border: 0; }
+.avatar {
+    width: 34px; height: 34px; border-radius: 50%;
+    display: inline-grid; place-items: center;
+    background: var(--brand-soft); color: var(--brand); font-weight: 700; font-size: .8rem;
+}
+.avatar-lg { width: 88px; height: 88px; font-size: 1.8rem; }
+
+/* ---------- Pages ---------- */
+main#spapp { padding: 1.5rem; flex: 1; }
+@media (max-width: 575.98px) { main#spapp { padding: 1rem; } }
+.page-header {
+    display: flex; flex-wrap: wrap; gap: 1rem;
+    justify-content: space-between; align-items: center; margin-bottom: 1.5rem;
+}
+.page-title { font-size: 1.5rem; font-weight: 700; margin: 0; }
+.page-subtitle { color: #6b7280; margin: .15rem 0 0; }
+
+.card { border: 0; border-radius: var(--radius); box-shadow: 0 1px 3px rgba(16, 24, 40, .08); }
+.card-header { background: transparent; border-bottom: 1px solid var(--border); font-weight: 600; padding: 1rem 1.25rem; }
+.table > :not(caption) > * > * { padding: .75rem; vertical-align: middle; }
+div.dt-container .dt-search input { margin-left: .5rem; }
+
+/* ---------- Dashboard ---------- */
+.stat-card .card-body { display: flex; align-items: center; gap: 1rem; }
+.stat-icon {
+    width: 52px; height: 52px; border-radius: 14px;
+    display: grid; place-items: center; font-size: 1.5rem; flex-shrink: 0;
+}
+.stat-value { font-size: 1.6rem; font-weight: 700; line-height: 1.1; }
+.stat-label { color: #6b7280; font-size: .875rem; }
+.bg-soft-indigo { background: #f3effe; color: #7c3aed; }
+.bg-soft-sky    { background: #e0f2fe; color: #0284c7; }
+.bg-soft-green  { background: #ecfdf5; color: #059669; }
+.bg-soft-amber  { background: #fffbeb; color: #d97706; }
+.bg-soft-rose   { background: #fff1f2; color: #e11d48; }
+
+/* ---------- Events ---------- */
+.event-card { height: 100%; transition: transform .15s, box-shadow .15s; overflow: hidden; }
+.event-card:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(16, 24, 40, .12); }
+/* Coloured banner per category instead of a photo (no external images needed) */
+.event-banner {
+    position: relative; height: 120px; display: grid; place-items: center;
+    color: #fff; font-size: 2.6rem;
+}
+.event-banner-lg { height: 220px; border-radius: var(--radius); font-size: 4rem; }
+.cat-music   { background: linear-gradient(135deg, #7c3aed, #c026d3); }
+.cat-tech    { background: linear-gradient(135deg, #2563eb, #06b6d4); }
+.cat-sports  { background: linear-gradient(135deg, #16a34a, #84cc16); }
+.cat-culture { background: linear-gradient(135deg, #ea580c, #f59e0b); }
+.cat-career  { background: linear-gradient(135deg, #0f172a, #475569); }
+.date-badge {
+    position: absolute; top: 12px; left: 12px; background: #fff; color: #111827;
+    border-radius: 10px; padding: 4px 10px; text-align: center; line-height: 1.1; box-shadow: 0 2px 6px rgba(0,0,0,.15);
+}
+.date-badge .day { font-size: 1.2rem; font-weight: 700; display: block; }
+.date-badge .month { font-size: .7rem; text-transform: uppercase; color: #7c3aed; font-weight: 700; }
+.event-title { font-weight: 600; font-size: .98rem; line-height: 1.3; margin-bottom: .2rem; }
+.event-meta { color: #6b7280; font-size: .85rem; }
+.rating { color: #f59e0b; }
+.weather-card { text-align: center; }
+.weather-card i { font-size: 2rem; color: #f59e0b; }
+
+/* ---------- Auth pages (login / register) ---------- */
+body.auth-mode .sidebar,
+body.auth-mode .topbar { display: none !important; }
+body.auth-mode main#spapp {
+    min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(135deg, #f3effe 0%, #f4f6fb 50%, #ecfeff 100%);
+}
+.auth-card { width: 100%; max-width: 440px; }
+.auth-card .card-body { padding: 2.25rem; }
+.auth-logo { width: 56px; height: 56px; }
+
+/* ---------- Misc ---------- */
+.empty-state { text-align: center; color: #6b7280; padding: 3rem 1rem; }
+.empty-state i { font-size: 2.5rem; display: block; margin-bottom: .5rem; }
+.select2-container { width: 100% !important; }

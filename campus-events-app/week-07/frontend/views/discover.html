@@ -1,0 +1,34 @@
+<div class="page-header">
+    <div>
+        <h1 class="page-title">Weather planner</h1>
+        <p class="page-subtitle">7-day forecast for any city by <a href="https://open-meteo.com" target="_blank" rel="noopener">Open-Meteo</a> – check the weather before you plan an outdoor event.</p>
+    </div>
+</div>
+
+<!-- Week 1: we only PLAN where the external API feature lives. It is implemented in week 6 (backend) and week 10 (frontend). -->
+<div class="card mb-4">
+    <div class="card-body">
+        <form id="weather-form" class="row g-2" novalidate>
+            <div class="col-md-9">
+                <div class="input-group">
+                    <span class="input-group-text bg-white"><i class="bi bi-geo-alt"></i></span>
+                    <input type="search" class="form-control" id="weather-city" name="city" placeholder="City – e.g. Sarajevo, Mostar, Tuzla" value="Sarajevo">
+                </div>
+            </div>
+            <div class="col-md-3 d-grid">
+                <button type="button" class="btn btn-primary"><i class="bi bi-search me-1"></i> Show forecast</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<h2 class="h5 fw-semibold mb-3">Sarajevo, Bosnia and Herzegovina</h2>
+<div class="row g-3" id="weather-results">
+    <div class="col-6 col-md-4 col-xl"><div class="card weather-card"><div class="card-body"><div class="fw-semibold">Wed 07.10.</div><i class="bi bi-sun"></i><div class="h5 fw-bold mb-0">19° / 8°</div><small class="text-muted">0% rain</small></div></div></div>
+    <div class="col-6 col-md-4 col-xl"><div class="card weather-card"><div class="card-body"><div class="fw-semibold">Thu 08.10.</div><i class="bi bi-cloud-sun"></i><div class="h5 fw-bold mb-0">18° / 9°</div><small class="text-muted">10% rain</small></div></div></div>
+    <div class="col-6 col-md-4 col-xl"><div class="card weather-card"><div class="card-body"><div class="fw-semibold">Fri 09.10.</div><i class="bi bi-cloud-drizzle"></i><div class="h5 fw-bold mb-0">14° / 8°</div><small class="text-muted">60% rain</small></div></div></div>
+    <div class="col-6 col-md-4 col-xl"><div class="card weather-card"><div class="card-body"><div class="fw-semibold">Sat 10.10.</div><i class="bi bi-cloud-sun"></i><div class="h5 fw-bold mb-0">17° / 9°</div><small class="text-muted">10% rain</small></div></div></div>
+    <div class="col-6 col-md-4 col-xl"><div class="card weather-card"><div class="card-body"><div class="fw-semibold">Sun 11.10.</div><i class="bi bi-sun"></i><div class="h5 fw-bold mb-0">20° / 10°</div><small class="text-muted">0% rain</small></div></div></div>
+    <div class="col-6 col-md-4 col-xl"><div class="card weather-card"><div class="card-body"><div class="fw-semibold">Mon 12.10.</div><i class="bi bi-clouds"></i><div class="h5 fw-bold mb-0">16° / 10°</div><small class="text-muted">30% rain</small></div></div></div>
+    <div class="col-6 col-md-4 col-xl"><div class="card weather-card"><div class="card-body"><div class="fw-semibold">Tue 13.10.</div><i class="bi bi-cloud-rain"></i><div class="h5 fw-bold mb-0">13° / 7°</div><small class="text-muted">80% rain</small></div></div></div>
+</div>
