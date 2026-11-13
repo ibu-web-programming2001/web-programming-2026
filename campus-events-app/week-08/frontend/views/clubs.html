@@ -1,0 +1,116 @@
+<div class="page-header">
+    <div>
+        <h1 class="page-title">Clubs</h1>
+        <p class="page-subtitle">Student clubs that organise events on campus.</p>
+    </div>
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#club-modal">
+        <i class="bi bi-plus-lg me-1"></i> Add club
+    </button>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <div class="table-responsive">
+        <table class="table table-hover w-100" id="clubs-table">
+            <thead>
+                <tr><th>Name</th><th>Faculty</th><th>Founded</th><th>Events</th><th class="text-end">Actions</th></tr>
+            </thead>
+            <tbody>
+            <tr><td><strong>IBU Music Club</strong></td><td>FASS</td><td>2015</td><td><span class="badge text-bg-light">2</span></td>
+                <td class="text-end text-nowrap">
+                    <button class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#club-modal" title="Edit"><i class="bi bi-pencil"></i></button>
+                    <button class="btn btn-sm btn-light text-danger" data-bs-toggle="modal" data-bs-target="#delete-club-modal" title="Delete"><i class="bi bi-trash"></i></button>
+                </td>
+            </tr>
+            <tr><td><strong>Google Developer Student Club</strong></td><td>FENS</td><td>2019</td><td><span class="badge text-bg-light">3</span></td>
+                <td class="text-end text-nowrap">
+                    <button class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#club-modal" title="Edit"><i class="bi bi-pencil"></i></button>
+                    <button class="btn btn-sm btn-light text-danger" data-bs-toggle="modal" data-bs-target="#delete-club-modal" title="Delete"><i class="bi bi-trash"></i></button>
+                </td>
+            </tr>
+            <tr><td><strong>IBU Sports Association</strong></td><td>All faculties</td><td>2012</td><td><span class="badge text-bg-light">2</span></td>
+                <td class="text-end text-nowrap">
+                    <button class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#club-modal" title="Edit"><i class="bi bi-pencil"></i></button>
+                    <button class="btn btn-sm btn-light text-danger" data-bs-toggle="modal" data-bs-target="#delete-club-modal" title="Delete"><i class="bi bi-trash"></i></button>
+                </td>
+            </tr>
+            <tr><td><strong>Debate & Culture Club</strong></td><td>FASS</td><td>2016</td><td><span class="badge text-bg-light">3</span></td>
+                <td class="text-end text-nowrap">
+                    <button class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#club-modal" title="Edit"><i class="bi bi-pencil"></i></button>
+                    <button class="btn btn-sm btn-light text-danger" data-bs-toggle="modal" data-bs-target="#delete-club-modal" title="Delete"><i class="bi bi-trash"></i></button>
+                </td>
+            </tr>
+            <tr><td><strong>Entrepreneurship Club</strong></td><td>FBA</td><td>2018</td><td><span class="badge text-bg-light">2</span></td>
+                <td class="text-end text-nowrap">
+                    <button class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#club-modal" title="Edit"><i class="bi bi-pencil"></i></button>
+                    <button class="btn btn-sm btn-light text-danger" data-bs-toggle="modal" data-bs-target="#delete-club-modal" title="Delete"><i class="bi bi-trash"></i></button>
+                </td>
+            </tr>
+            <tr><td><strong>Robotics Club</strong></td><td>FENS</td><td>2020</td><td><span class="badge text-bg-light">1</span></td>
+                <td class="text-end text-nowrap">
+                    <button class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#club-modal" title="Edit"><i class="bi bi-pencil"></i></button>
+                    <button class="btn btn-sm btn-light text-danger" data-bs-toggle="modal" data-bs-target="#delete-club-modal" title="Delete"><i class="bi bi-trash"></i></button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        </div>
+    </div>
+</div>
+
+<!-- Add / edit modal -->
+<div class="modal fade" id="club-modal" tabindex="-1" aria-labelledby="club-modal-title" aria-hidden="true">
+    <div class="modal-dialog">
+        <form class="modal-content" id="club-form" novalidate>
+            <div class="modal-header">
+                <h5 class="modal-title" id="club-modal-title">Add club</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" name="id">
+                <div class="mb-3">
+                    <label class="form-label" for="club-name">Name</label>
+                    <input type="text" class="form-control" id="club-name" name="name" >
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="club-faculty">Faculty</label>
+                    <input type="text" class="form-control" id="club-faculty" name="faculty" placeholder="e.g. FENS">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="club-founded">Founded (year)</label>
+                    <input type="number" class="form-control" id="club-founded" name="founded_year" >
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="club-description">Description</label>
+                    <textarea class="form-control" id="club-description" name="description" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Delete confirmation modal -->
+<div class="modal fade" id="delete-club-modal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Delete club</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">Are you sure you want to delete <strong>Robotics Club</strong>?</div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // DataTables adds searching, sorting and paging to a normal HTML table
+    new DataTable("#clubs-table", { pageLength: 10, columnDefs: [{ orderable: false, targets: -1 }] });
+</script>

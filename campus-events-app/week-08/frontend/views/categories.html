@@ -1,0 +1,102 @@
+<div class="page-header">
+    <div>
+        <h1 class="page-title">Categories</h1>
+        <p class="page-subtitle">Group events by interest.</p>
+    </div>
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#category-modal">
+        <i class="bi bi-plus-lg me-1"></i> Add category
+    </button>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <div class="table-responsive">
+        <table class="table table-hover w-100" id="categories-table">
+            <thead>
+                <tr><th>Name</th><th>Description</th><th>Events</th><th class="text-end">Actions</th></tr>
+            </thead>
+            <tbody>
+            <tr><td><strong>Music</strong></td><td>Concerts, open mics and jam sessions</td><td><span class="badge text-bg-light">2</span></td>
+                <td class="text-end text-nowrap">
+                    <button class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#category-modal" title="Edit"><i class="bi bi-pencil"></i></button>
+                    <button class="btn btn-sm btn-light text-danger" data-bs-toggle="modal" data-bs-target="#delete-category-modal" title="Delete"><i class="bi bi-trash"></i></button>
+                </td>
+            </tr>
+            <tr><td><strong>Tech</strong></td><td>Hackathons, workshops and tech talks</td><td><span class="badge text-bg-light">3</span></td>
+                <td class="text-end text-nowrap">
+                    <button class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#category-modal" title="Edit"><i class="bi bi-pencil"></i></button>
+                    <button class="btn btn-sm btn-light text-danger" data-bs-toggle="modal" data-bs-target="#delete-category-modal" title="Delete"><i class="bi bi-trash"></i></button>
+                </td>
+            </tr>
+            <tr><td><strong>Sports</strong></td><td>Tournaments, hikes and fitness</td><td><span class="badge text-bg-light">2</span></td>
+                <td class="text-end text-nowrap">
+                    <button class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#category-modal" title="Edit"><i class="bi bi-pencil"></i></button>
+                    <button class="btn btn-sm btn-light text-danger" data-bs-toggle="modal" data-bs-target="#delete-category-modal" title="Delete"><i class="bi bi-trash"></i></button>
+                </td>
+            </tr>
+            <tr><td><strong>Culture</strong></td><td>Film, theatre, debates and trips</td><td><span class="badge text-bg-light">3</span></td>
+                <td class="text-end text-nowrap">
+                    <button class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#category-modal" title="Edit"><i class="bi bi-pencil"></i></button>
+                    <button class="btn btn-sm btn-light text-danger" data-bs-toggle="modal" data-bs-target="#delete-category-modal" title="Delete"><i class="bi bi-trash"></i></button>
+                </td>
+            </tr>
+            <tr><td><strong>Career</strong></td><td>Career fairs, pitches and networking</td><td><span class="badge text-bg-light">2</span></td>
+                <td class="text-end text-nowrap">
+                    <button class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#category-modal" title="Edit"><i class="bi bi-pencil"></i></button>
+                    <button class="btn btn-sm btn-light text-danger" data-bs-toggle="modal" data-bs-target="#delete-category-modal" title="Delete"><i class="bi bi-trash"></i></button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        </div>
+    </div>
+</div>
+
+<!-- Add / edit modal -->
+<div class="modal fade" id="category-modal" tabindex="-1" aria-labelledby="category-modal-title" aria-hidden="true">
+    <div class="modal-dialog">
+        <form class="modal-content" id="category-form" novalidate>
+            <div class="modal-header">
+                <h5 class="modal-title" id="category-modal-title">Add category</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" name="id">
+                <div class="mb-3">
+                    <label class="form-label" for="category-name">Name</label>
+                    <input type="text" class="form-control" id="category-name" name="name" >
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="category-description">Description</label>
+                    <textarea class="form-control" id="category-description" name="description" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Delete confirmation modal -->
+<div class="modal fade" id="delete-category-modal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Delete category</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">Are you sure you want to delete <strong>Career</strong>?</div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // DataTables adds searching, sorting and paging to a normal HTML table
+    new DataTable("#categories-table", { pageLength: 10, columnDefs: [{ orderable: false, targets: -1 }] });
+</script>
