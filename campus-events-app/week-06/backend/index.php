@@ -20,6 +20,8 @@ require_once __DIR__ . '/rest/services/UserService.php';
 require_once __DIR__ . '/rest/services/DashboardService.php';
 require_once __DIR__ . '/rest/services/OpenMeteoService.php';
 require_once __DIR__ . '/rest/services/OpenMeteoServicev1.php';
+require_once __DIR__ . '/rest/services/CountryService.php';
+require_once __DIR__ . '/rest/services/GeoService.php';
 require_once __DIR__ . '/rest/services/EventServicev2.php';     // only for the v1 demo routes
 
 // Register services once, use them in every route: Flight::event_service()->...
@@ -32,6 +34,8 @@ Flight::register('user_service', 'UserService');
 Flight::register('dashboard_service', 'DashboardService');
 Flight::register('open_meteo_service', 'OpenMeteoService');
 Flight::register('open_meteo_service_v1', 'OpenMeteoServicev1');
+Flight::register('country_service', 'CountryService');
+Flight::register('geo_service', 'GeoService');
 Flight::register('event_service_v2', 'EventServicev2');
 
 /*
@@ -90,5 +94,6 @@ require_once __DIR__ . '/rest/routes/ReviewRoutes.php';
 require_once __DIR__ . '/rest/routes/UserRoutes.php';
 require_once __DIR__ . '/rest/routes/DashboardRoutes.php';
 require_once __DIR__ . '/rest/routes/WeatherRoutes.php';
+require_once __DIR__ . '/rest/routes/CountryRoutes.php';
 
 Flight::start();

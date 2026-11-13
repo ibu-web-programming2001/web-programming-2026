@@ -12,3 +12,7 @@ backend/logs/*
 .DS_Store
 .idea/
 .vscode/
+
+# Cached copies of external data (downloaded again when missing)
+backend/cache/*
+!backend/cache/.gitkeep
