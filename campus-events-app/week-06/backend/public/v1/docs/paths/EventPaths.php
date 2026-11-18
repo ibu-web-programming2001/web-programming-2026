@@ -136,7 +136,7 @@ class EventPaths
     public function postEvents() {}
 
     #[OA\Put(
-        path: '/events/{id}',
+        path: '/events/{id}', 
         tags: ['events'],
         summary: 'Update an event',
         parameters: [

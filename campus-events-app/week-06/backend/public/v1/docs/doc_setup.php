@@ -1,5 +1,5 @@
 <?php
-use OpenApi\Attributes as OA;
+use OpenApi\Attributes as OA; //vendor zircote 
 
 /*
  * General API information + reusable schemas (referenced from the paths with ref: '#/components/schemas/...').
@@ -148,20 +148,9 @@ use OpenApi\Attributes as OA;
         new OA\Property(property: 'first_name', type: 'string', example: 'Amar'),
         new OA\Property(property: 'last_name', type: 'string', example: 'Hodžić'),
         new OA\Property(property: 'email', type: 'string', format: 'email', example: 'amar@campusevents.ba'),
-        new OA\Property(
-            property: 'password',
-            type: 'string',
-            format: 'password',
-            example: 'Secret123',
-            description: 'Required when creating, optional when updating'
-        ),
+        new OA\Property(property: 'password', type: 'string', format: 'password', example: 'Secret123', description: 'Required when creating, optional when updating'),
         new OA\Property(property: 'role', type: 'string', enum: ['admin', 'student'], example: 'student'),
-        new OA\Property(
-            property: 'faculty',
-            type: 'string',
-            enum: ['FENS', 'FASS', 'FBA', 'FEDU'],
-            example: 'FENS'
-        )
+        new OA\Property(property: 'faculty',type: 'string', enum: ['FENS', 'FASS', 'FBA', 'FEDU'], example: 'FENS')
     ]
 )]
 #[OA\Schema(
