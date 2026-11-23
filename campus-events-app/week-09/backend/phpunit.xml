@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit bootstrap="tests/bootstrap.php" colors="true" cacheDirectory=".phpunit.cache">
+    <testsuites>
+        <!-- Fast tests of the business logic. No database, no server (DAOs are mocked). -->
+        <testsuite name="unit">
+            <directory>tests/unit</directory>
+        </testsuite>
+        <!-- Real HTTP requests against a RUNNING API + database. -->
+        <testsuite name="api">
+            <directory>tests/api</directory>
+        </testsuite>
+    </testsuites>
+
+    <php>
+        <!--
+            Where the API tests send their requests. Pick ONE and adjust the folder name:
+
+            PHP built-in server (php -S localhost:8000 server.php in the week folder):
+                http://localhost:8000/backend
+
+            XAMPP / WAMP / MAMP (project copied into htdocs/ or www/):
+                http://localhost/campus-events-app/week-09/backend
+                (MAMP default port: http://localhost:8888/...)
+
+            Check it first: open the URL in the browser – you should get a JSON response, not a 404.
+            A real API_BASE_URL environment variable still wins (force="false"), e.g. in CI.
+        -->
+        <env name="API_BASE_URL" value="http://localhost:8000/backend" force="false"/>
+    </php>
+</phpunit>

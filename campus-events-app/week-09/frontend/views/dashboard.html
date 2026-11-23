@@ -1,0 +1,95 @@
+<div class="page-header">
+    <div>
+        <h1 class="page-title">Welcome back, Lejla 👋</h1>
+        <p class="page-subtitle">Here is what is happening on campus this week.</p>
+    </div>
+    <a href="#events" class="btn btn-primary"><i class="bi bi-calendar-event me-1"></i> Browse events</a>
+</div>
+
+<!-- Stat cards -->
+<div class="row g-3 mb-4">
+    <div class="col-6 col-xl-3">
+        <div class="card stat-card"><div class="card-body">
+            <div class="stat-icon bg-soft-indigo"><i class="bi bi-calendar-event"></i></div>
+            <div><div class="stat-value">10</div><div class="stat-label">Upcoming events</div></div>
+        </div></div>
+    </div>
+    <div class="col-6 col-xl-3">
+        <div class="card stat-card"><div class="card-body">
+            <div class="stat-icon bg-soft-green"><i class="bi bi-people"></i></div>
+            <div><div class="stat-value">3</div><div class="stat-label">Students</div></div>
+        </div></div>
+    </div>
+    <div class="col-6 col-xl-3">
+        <div class="card stat-card"><div class="card-body">
+            <div class="stat-icon bg-soft-amber"><i class="bi bi-ticket-perforated"></i></div>
+            <div><div class="stat-value">7</div><div class="stat-label">Upcoming registrations</div></div>
+        </div></div>
+    </div>
+    <div class="col-6 col-xl-3">
+        <div class="card stat-card"><div class="card-body">
+            <div class="stat-icon bg-soft-rose"><i class="bi bi-fire"></i></div>
+            <div><div class="stat-value">1</div><div class="stat-label">Sold out</div></div>
+        </div></div>
+    </div>
+</div>
+
+<div class="row g-3">
+    <!-- Chart -->
+    <div class="col-lg-8">
+        <div class="card h-100">
+            <div class="card-header">Registrations per category</div>
+            <div class="card-body"><div id="registrations-chart" style="height: 300px"></div></div>
+        </div>
+    </div>
+
+    <!-- Starting soon -->
+    <div class="col-lg-4">
+        <div class="card h-100">
+            <div class="card-header">Starting soon</div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <div><div class="fw-semibold">Chess Blitz Night</div><small class="text-muted">Library Hall · 16 seats left</small></div>
+                    <span class="badge text-bg-warning">tomorrow</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <div><div class="fw-semibold">Git & GitHub Workshop</div><small class="text-muted">Room B-103 · 29 seats left</small></div>
+                    <span class="badge text-bg-warning">in 2 days</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <div><div class="fw-semibold">Welcome Concert</div><small class="text-muted">IBU Amphitheatre · 198 seats left</small></div>
+                    <span class="badge text-bg-light">in 3 days</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <div><div class="fw-semibold">Robot Build Day</div><small class="text-muted">Robotics Lab</small></div>
+                    <span class="badge text-bg-danger">sold out</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- External API feature placeholder: planned in week 1, implemented in week 6 -->
+<div class="card mt-3">
+    <div class="card-body d-flex flex-wrap align-items-center gap-3">
+        <div class="stat-icon bg-soft-sky"><i class="bi bi-cloud-sun"></i></div>
+        <div class="flex-grow-1">
+            <div class="fw-semibold">Plan with the weather</div>
+            <div class="text-muted small">7-day forecast for any city, powered by Open-Meteo – perfect for outdoor events.</div>
+        </div>
+        <a href="#discover" class="btn btn-outline-primary">Open weather planner</a>
+    </div>
+</div>
+
+<script>
+    // Week 1: static demo data. In week 10 these numbers come from GET /dashboard.
+    Highcharts.chart("registrations-chart", {
+        chart: { type: "column", backgroundColor: "transparent", style: { fontFamily: "Inter" } },
+        title: { text: null },
+        credits: { enabled: false },
+        legend: { enabled: false },
+        xAxis: { categories: ["Music", "Tech", "Sports", "Culture", "Career"] },
+        yAxis: { title: { text: "Registrations" }, allowDecimals: false },
+        series: [{ name: "Registrations", data: [4, 4, 1, 0, 1], color: "#7c3aed", borderRadius: 6 }]
+    });
+</script>

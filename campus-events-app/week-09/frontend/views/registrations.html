@@ -1,0 +1,147 @@
+<div class="page-header">
+    <div>
+        <h1 class="page-title">Registrations</h1>
+        <p class="page-subtitle">Who is coming to which event.</p>
+    </div>
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#registration-modal">
+        <i class="bi bi-plus-lg me-1"></i> New registration
+    </button>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <div class="table-responsive">
+        <table class="table table-hover w-100" id="registrations-table">
+            <thead>
+                <tr><th>Event</th><th>Student</th><th>Event date</th><th>Registered</th><th>Status</th><th class="text-end">Actions</th></tr>
+            </thead>
+            <tbody>
+            <tr><td><strong>Git & GitHub Workshop</strong></td><td>Ema Kovač</td><td>09.10.2026 16:00</td><td>06.10.2026</td><td><span class="badge text-bg-primary">registered</span></td>
+                <td class="text-end text-nowrap">
+                    <button class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#registration-modal" title="Edit"><i class="bi bi-pencil"></i></button>
+                    <button class="btn btn-sm btn-light text-danger" data-bs-toggle="modal" data-bs-target="#delete-registration-modal" title="Delete"><i class="bi bi-trash"></i></button>
+                </td>
+            </tr>
+            <tr><td><strong>Welcome Concert</strong></td><td>Ema Kovač</td><td>10.10.2026 19:00</td><td>02.10.2026</td><td><span class="badge text-bg-primary">registered</span></td>
+                <td class="text-end text-nowrap">
+                    <button class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#registration-modal" title="Edit"><i class="bi bi-pencil"></i></button>
+                    <button class="btn btn-sm btn-light text-danger" data-bs-toggle="modal" data-bs-target="#delete-registration-modal" title="Delete"><i class="bi bi-trash"></i></button>
+                </td>
+            </tr>
+            <tr><td><strong>Welcome Concert</strong></td><td>Tarik Begić</td><td>10.10.2026 19:00</td><td>03.10.2026</td><td><span class="badge text-bg-primary">registered</span></td>
+                <td class="text-end text-nowrap">
+                    <button class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#registration-modal" title="Edit"><i class="bi bi-pencil"></i></button>
+                    <button class="btn btn-sm btn-light text-danger" data-bs-toggle="modal" data-bs-target="#delete-registration-modal" title="Delete"><i class="bi bi-trash"></i></button>
+                </td>
+            </tr>
+            <tr><td><strong>Robot Build Day</strong></td><td>Tarik Begić</td><td>12.10.2026 10:00</td><td>05.10.2026</td><td><span class="badge text-bg-primary">registered</span></td>
+                <td class="text-end text-nowrap">
+                    <button class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#registration-modal" title="Edit"><i class="bi bi-pencil"></i></button>
+                    <button class="btn btn-sm btn-light text-danger" data-bs-toggle="modal" data-bs-target="#delete-registration-modal" title="Delete"><i class="bi bi-trash"></i></button>
+                </td>
+            </tr>
+            <tr><td><strong>Robot Build Day</strong></td><td>Lana Mehić</td><td>12.10.2026 10:00</td><td>05.10.2026</td><td><span class="badge text-bg-primary">registered</span></td>
+                <td class="text-end text-nowrap">
+                    <button class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#registration-modal" title="Edit"><i class="bi bi-pencil"></i></button>
+                    <button class="btn btn-sm btn-light text-danger" data-bs-toggle="modal" data-bs-target="#delete-registration-modal" title="Delete"><i class="bi bi-trash"></i></button>
+                </td>
+            </tr>
+            <tr><td><strong>Futsal Tournament</strong></td><td>Lana Mehić</td><td>13.10.2026 17:00</td><td>01.10.2026</td><td><span class="badge text-bg-primary">registered</span></td>
+                <td class="text-end text-nowrap">
+                    <button class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#registration-modal" title="Edit"><i class="bi bi-pencil"></i></button>
+                    <button class="btn btn-sm btn-light text-danger" data-bs-toggle="modal" data-bs-target="#delete-registration-modal" title="Delete"><i class="bi bi-trash"></i></button>
+                </td>
+            </tr>
+            <tr><td><strong>Hack the Campus – 24h Hackathon</strong></td><td>Ema Kovač</td><td>17.10.2026 09:00</td><td>04.10.2026</td><td><span class="badge text-bg-primary">registered</span></td>
+                <td class="text-end text-nowrap">
+                    <button class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#registration-modal" title="Edit"><i class="bi bi-pencil"></i></button>
+                    <button class="btn btn-sm btn-light text-danger" data-bs-toggle="modal" data-bs-target="#delete-registration-modal" title="Delete"><i class="bi bi-trash"></i></button>
+                </td>
+            </tr>
+            <tr><td><strong>Movie Night: Classic Cinema</strong></td><td>Lana Mehić</td><td>15.10.2026 20:00</td><td>29.09.2026</td><td><span class="badge text-bg-secondary">cancelled</span></td>
+                <td class="text-end text-nowrap">
+                    <button class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#registration-modal" title="Edit"><i class="bi bi-pencil"></i></button>
+                    <button class="btn btn-sm btn-light text-danger" data-bs-toggle="modal" data-bs-target="#delete-registration-modal" title="Delete"><i class="bi bi-trash"></i></button>
+                </td>
+            </tr>
+            <tr><td><strong>Open Mic Night</strong></td><td>Ema Kovač</td><td>30.09.2026 20:00</td><td>25.09.2026</td><td><span class="badge text-bg-success">attended</span></td>
+                <td class="text-end text-nowrap">
+                    <button class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#registration-modal" title="Edit"><i class="bi bi-pencil"></i></button>
+                    <button class="btn btn-sm btn-light text-danger" data-bs-toggle="modal" data-bs-target="#delete-registration-modal" title="Delete"><i class="bi bi-trash"></i></button>
+                </td>
+            </tr>
+            <tr><td><strong>Open Mic Night</strong></td><td>Lana Mehić</td><td>30.09.2026 20:00</td><td>25.09.2026</td><td><span class="badge text-bg-success">attended</span></td>
+                <td class="text-end text-nowrap">
+                    <button class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#registration-modal" title="Edit"><i class="bi bi-pencil"></i></button>
+                    <button class="btn btn-sm btn-light text-danger" data-bs-toggle="modal" data-bs-target="#delete-registration-modal" title="Delete"><i class="bi bi-trash"></i></button>
+                </td>
+            </tr>
+            <tr><td><strong>Career Fair 2026</strong></td><td>Tarik Begić</td><td>23.09.2026 10:00</td><td>17.09.2026</td><td><span class="badge text-bg-success">attended</span></td>
+                <td class="text-end text-nowrap">
+                    <button class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#registration-modal" title="Edit"><i class="bi bi-pencil"></i></button>
+                    <button class="btn btn-sm btn-light text-danger" data-bs-toggle="modal" data-bs-target="#delete-registration-modal" title="Delete"><i class="bi bi-trash"></i></button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        </div>
+    </div>
+</div>
+
+<!-- Add / edit modal -->
+<div class="modal fade" id="registration-modal" tabindex="-1" aria-labelledby="registration-modal-title" aria-hidden="true">
+    <div class="modal-dialog">
+        <form class="modal-content" id="registration-form" novalidate>
+            <div class="modal-header">
+                <h5 class="modal-title" id="registration-modal-title">New registration</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" name="id">
+                <div class="mb-3">
+                    <label class="form-label" for="registration-user">Student</label>
+                    <select class="form-select" id="registration-user" name="user_id">
+                        <option value="2">Ema Kovač</option>
+                        <option value="3">Tarik Begić</option>
+                        <option value="4">Lana Mehić</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="registration-event">Event</label>
+                    <select class="form-select" id="registration-event" name="event_id">
+                        <option value="12">Chess Blitz Night (16 seats left)</option>
+                        <option value="5">Movie Night: Classic Cinema (120 seats left)</option>
+                        <option value="8">Hiking Trip to Trebević (25 seats left)</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Delete confirmation modal -->
+<div class="modal fade" id="delete-registration-modal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Delete registration</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">Are you sure you want to delete <strong>Welcome Concert – Ema Kovač</strong>?</div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // DataTables adds searching, sorting and paging to a normal HTML table
+    new DataTable("#registrations-table", { pageLength: 10, columnDefs: [{ orderable: false, targets: -1 }] });
+    $("#registration-user, #registration-event").select2({ theme: "bootstrap-5", dropdownParent: $("#registration-modal") });
+</script>
