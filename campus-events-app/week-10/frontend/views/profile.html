@@ -1,0 +1,91 @@
+<div class="page-header">
+    <div>
+        <h1 class="page-title">My profile</h1>
+        <p class="page-subtitle">Your account details and campus activity.</p>
+    </div>
+</div>
+
+<div class="row g-3">
+    <div class="col-lg-4">
+        <div class="card h-100">
+            <div class="card-body text-center p-4">
+                <span class="avatar avatar-lg mb-3" id="profile-initials"></span>
+                <h2 class="h5 fw-bold mb-0" id="profile-name"></h2>
+                <p class="text-muted mb-2" id="profile-email-text"></p>
+                <span class="badge text-bg-primary" id="profile-role"></span>
+                <p class="small text-muted mt-2 mb-0" id="profile-joined"></p>
+                <p class="small text-muted mb-0" id="profile-faculty"></p>
+                <div class="student-only">
+                    <hr>
+                    <div class="row text-center">
+                        <div class="col"><div class="stat-value" id="profile-upcoming">0</div><div class="stat-label">Upcoming events</div></div>
+                        <div class="col"><div class="stat-value" id="profile-reviews">0</div><div class="stat-label">Reviews</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-8">
+        <div class="card h-100">
+            <div class="card-header">Edit profile</div>
+            <div class="card-body">
+                <form id="profile-form" novalidate>
+                    <div class="row g-3">
+                        <div class="col-sm-6">
+                            <label class="form-label" for="profile-first-name">First name</label>
+                            <input type="text" class="form-control" id="profile-first-name" name="first_name">
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="form-label" for="profile-last-name">Last name</label>
+                            <input type="text" class="form-control" id="profile-last-name" name="last_name">
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label" for="profile-email">Email</label>
+                            <input type="email" class="form-control" id="profile-email" disabled>
+                            <div class="form-text">The email address cannot be changed.</div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="form-label" for="profile-password">New password</label>
+                            <input type="password" class="form-control" id="profile-password" name="password" placeholder="Leave empty to keep" autocomplete="new-password">
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="form-label" for="profile-password-confirm">Confirm new password</label>
+                            <input type="password" class="form-control" id="profile-password-confirm" name="password_confirm" autocomplete="new-password">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-4">Save changes</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">Two-factor authentication <span class="badge ms-2" id="twofa-status"></span></div>
+            <div class="card-body">
+                <p class="text-muted mb-3">Protect your account with a 6-digit code from an authenticator app
+                    (Google Authenticator, Microsoft Authenticator, Authy…).</p>
+                <button class="btn btn-outline-primary" id="twofa-setup-button"><i class="bi bi-shield-lock me-1"></i> Set up 2FA</button>
+
+                <div class="row g-4 d-none" id="twofa-setup">
+                    <div class="col-md-auto"><div id="twofa-qr" class="p-2 bg-white border rounded d-inline-block"></div></div>
+                    <div class="col-md">
+                        <p class="mb-1">1. Scan the QR code with your app, or enter this key manually:</p>
+                        <code class="d-block mb-3" id="twofa-secret"></code>
+                        <p class="mb-1">2. Type the 6-digit code shown in the app:</p>
+                        <form class="d-flex gap-2" id="twofa-enable-form" novalidate>
+                            <input type="text" class="form-control" name="code" maxlength="6" inputmode="numeric" placeholder="123456" style="max-width: 160px">
+                            <button type="submit" class="btn btn-primary">Enable</button>
+                        </form>
+                    </div>
+                </div>
+
+                <form class="d-flex gap-2 d-none" id="twofa-disable-form" novalidate>
+                    <input type="text" class="form-control" name="code" maxlength="6" inputmode="numeric" placeholder="Current code" style="max-width: 160px">
+                    <button type="submit" class="btn btn-outline-danger">Disable 2FA</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

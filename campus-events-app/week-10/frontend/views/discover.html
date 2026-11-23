@@ -1,0 +1,35 @@
+<div class="page-header">
+    <div>
+        <h1 class="page-title">Weather planner</h1>
+        <p class="page-subtitle">Daily forecast for any city by <a href="https://open-meteo.com" target="_blank" rel="noopener">Open-Meteo</a> – check the weather before you plan an outdoor event.</p>
+    </div>
+</div>
+
+<div class="card mb-4">
+    <div class="card-body">
+        <form id="weather-form" class="row g-2" novalidate>
+            <div class="col-md-7">
+                <div class="input-group">
+                    <span class="input-group-text bg-white"><i class="bi bi-geo-alt"></i></span>
+                    <input type="search" class="form-control" id="weather-city" name="city" placeholder="City – e.g. Sarajevo, Mostar, Tuzla" value="Sarajevo">
+                </div>
+            </div>
+            <div class="col-md-2">
+                <select class="form-select" id="weather-days" name="days">
+                    <option value="3">3 days</option>
+                    <option value="7" selected>7 days</option>
+                    <option value="14">14 days</option>
+                </select>
+            </div>
+            <div class="col-md-3 d-grid">
+                <button type="submit" class="btn btn-primary"><i class="bi bi-search me-1"></i> Show forecast</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Results from GET /weather/forecast (our backend calls Open-Meteo) -->
+<h2 class="h5 fw-semibold mb-3" id="weather-place"></h2>
+<div class="row g-3" id="weather-results">
+    <div class="col-12"><div class="empty-state"><i class="bi bi-cloud-sun"></i>Enter a city to see its forecast.</div></div>
+</div>

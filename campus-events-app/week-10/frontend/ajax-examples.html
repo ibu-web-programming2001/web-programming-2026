@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX – four versions</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+<div class="container py-4" style="max-width: 900px">
+    <h1 class="h3">AJAX – the same request, four versions</h1>
+    <p class="text-muted">
+        Every button loads <code>GET /events</code> without reloading the page.
+        Log in to the <a href="index.html">application</a> first – the token is read from <code>localStorage</code>.
+        Open DevTools → <strong>Network</strong> (Fetch/XHR) to watch the requests.
+    </p>
+
+    <div class="d-flex flex-wrap gap-2 mb-3">
+        <button class="btn btn-outline-secondary" onclick="version1()">v1 · XMLHttpRequest</button>
+        <button class="btn btn-outline-secondary" onclick="version2()">v2 · fetch()</button>
+        <button class="btn btn-outline-secondary" onclick="version3()">v3 · $.ajax</button>
+        <button class="btn btn-primary" onclick="version4()">v4 · RestClient (used in the app)</button>
+    </div>
+    <pre class="bg-white border rounded p-3" id="output" style="min-height: 200px">Click a button…</pre>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
+<script src="js/config.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/rest-client.js"></script>
+<script>
+    function show(version, status, events) {
+        const titles = Array.isArray(events) ? events.map(e => " - " + e.title).join("\n") : JSON.stringify(events);
+        $("#output").text(version + " → HTTP " + status + "\n\n" + titles);
+    }
+
+    /* v1 – the browser API from 1999: callbacks, manual JSON parsing, manual header */
+    function version1() {
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", Constants.API_BASE_URL + "events");
+        xhr.setRequestHeader("Authorization", "Bearer " + Auth.getToken());
+        xhr.onload = function () {
+            show("v1 XMLHttpRequest", xhr.status, JSON.parse(xhr.responseText));
+        };
+        xhr.send();
+    }
+
+    /* v2 – modern browser API with Promises (no library needed) */
+    function version2() {
+        fetch(Constants.API_BASE_URL + "events", {
+            headers: { "Authorization": "Bearer " + Auth.getToken() }
+        })
+            .then(response => response.json().then(data => show("v2 fetch", response.status, data)));
+    }
+
+    /* v3 – jQuery: shorter, success/error callbacks – but the URL, header and error handling
+       would be repeated in EVERY call of the application */
+    function version3() {
+        $.ajax({
+            url: Constants.API_BASE_URL + "events",
+            type: "GET",
+            dataType: "json",
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader("Authorization", "Bearer " + Auth.getToken());
+            },
+            success: function (events, status, xhr) { show("v3 $.ajax", xhr.status, events); },
+            error: function (xhr) { show("v3 $.ajax", xhr.status, xhr.responseJSON); }
+        });
+    }
+
+    /* v4 – our RestClient: base URL, token, JSON and 401/403 handling written ONCE (js/rest-client.js) */
+    function version4() {
+        RestClient.get("events", function (events) {
+            show("v4 RestClient", 200, events);
+        });
+    }
+</script>
+</body>
+</html>

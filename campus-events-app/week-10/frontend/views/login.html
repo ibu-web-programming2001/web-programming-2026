@@ -1,0 +1,35 @@
+<div class="card auth-card">
+    <div class="card-body">
+        <div class="text-center mb-4">
+            <img src="assets/img/logo.svg" class="auth-logo mb-3" alt="CampusEvents">
+            <h1 class="h4 fw-bold mb-1">Welcome back</h1>
+            <p class="text-muted mb-0">Log in to your CampusEvents account</p>
+        </div>
+
+        <form id="login-form" novalidate>
+            <div class="mb-3">
+                <label for="login-email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="login-email" name="email" placeholder="you@example.com" autocomplete="email">
+            </div>
+            <div class="mb-4">
+                <label for="login-password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="login-password" name="password" placeholder="••••••••" autocomplete="current-password">
+            </div>
+            <!-- Shown only when the account has two-factor authentication enabled -->
+            <div class="mb-4 d-none" id="login-code-group">
+                <label for="login-code" class="form-label">6-digit code from your authenticator app</label>
+                <input type="text" class="form-control" id="login-code" name="code" inputmode="numeric" autocomplete="one-time-code" maxlength="6">
+            </div>
+            <button type="submit" class="btn btn-primary w-100 py-2">Log in</button>
+        </form>
+
+        <div class="alert alert-light small mt-4 mb-0">
+            <strong>Test accounts</strong><br>
+            admin@campusevents.ba / Admin123! &nbsp;·&nbsp; lana@campusevents.ba / Student123!
+        </div>
+
+        <p class="text-center text-muted mt-3 mb-0">
+            Don't have an account? <a href="#register">Create one</a>
+        </p>
+    </div>
+</div>

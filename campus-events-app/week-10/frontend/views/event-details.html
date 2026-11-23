@@ -1,0 +1,71 @@
+<a href="#events" class="btn btn-link px-0 mb-3"><i class="bi bi-arrow-left"></i> Back to events</a>
+
+<!-- Rendered by EventDetailsPage from GET /events/{id} -->
+<div class="card mb-4">
+    <div class="card-body p-4">
+        <div class="row g-4">
+            <div class="col-md-4 col-lg-3">
+                <div class="event-banner event-banner-lg" id="details-banner"><i class="bi bi-calendar-event"></i></div>
+            </div>
+            <div class="col-md-8 col-lg-9">
+                <span class="badge text-bg-light mb-2" id="details-category"></span>
+                <h1 class="h3 fw-bold mb-1" id="details-title"></h1>
+                <p class="text-muted mb-3">by <span id="details-club"></span></p>
+                <div class="mb-3" id="details-rating"></div>
+                <p id="details-description"></p>
+                <dl class="row small mb-4">
+                    <dt class="col-5 col-md-3 text-muted fw-normal">When</dt><dd class="col-7 col-md-9" id="details-when"></dd>
+                    <dt class="col-5 col-md-3 text-muted fw-normal">Where</dt><dd class="col-7 col-md-9" id="details-where"></dd>
+                    <dt class="col-5 col-md-3 text-muted fw-normal">Seats</dt><dd class="col-7 col-md-9" id="details-seats"></dd>
+                </dl>
+                <div class="student-only">
+                    <button class="btn btn-primary" id="details-register"><i class="bi bi-ticket-perforated me-1"></i> Register</button>
+                    <span class="text-muted small ms-2">Max. 3 upcoming registrations per student</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-3">
+    <!-- External API feature: weather on the event day (GET /events/{id}/weather → Open-Meteo) -->
+    <div class="col-lg-4">
+        <div class="card h-100">
+            <div class="card-header"><i class="bi bi-cloud-sun me-1"></i> Weather on the day</div>
+            <div class="card-body" id="details-weather"></div>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="card h-100">
+            <div class="card-header">Reviews</div>
+            <ul class="list-group list-group-flush" id="review-list"></ul>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="card h-100">
+            <div class="card-header" id="review-form-title">Write a review</div>
+            <div class="card-body">
+                <form id="review-form" novalidate>
+                    <input type="hidden" name="id">
+                    <div class="mb-3">
+                        <label class="form-label" for="review-rating">Rating</label>
+                        <select class="form-select" id="review-rating" name="rating">
+                            <option value="5">★★★★★ – Amazing</option>
+                            <option value="4">★★★★ – Good</option>
+                            <option value="3">★★★ – OK</option>
+                            <option value="2">★★ – Poor</option>
+                            <option value="1">★ – Terrible</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="review-comment">Comment</label>
+                        <textarea class="form-control" id="review-comment" name="comment" rows="3" placeholder="How was it?"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="review-submit">Submit review</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

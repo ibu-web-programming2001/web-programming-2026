@@ -1,0 +1,198 @@
+### CampusEvents API – manual requests
+### Open in VS Code (extension "REST Client") or PhpStorm and click "Send Request".
+@base = http://localhost:8000/backend
+
+### ---------- Authentication (week 07) ----------
+
+### Without a token -> 401
+GET {{base}}/events
+
+### Log in as admin – the response contains "token"
+# @name login
+POST {{base}}/auth/login
+Content-Type: application/json
+
+{ "email": "admin@campusevents.ba", "password": "Admin123!" }
+
+### Token from the login above (REST Client fills it in automatically)
+@token = {{login.response.body.token}}
+
+### Wrong password -> 401 (see logs/error.log)
+POST {{base}}/auth/login
+Content-Type: application/json
+
+{ "email": "admin@campusevents.ba", "password": "wrong" }
+
+### Register a new student (the "role" is ignored – always student)
+POST {{base}}/auth/register
+Content-Type: application/json
+
+{ "first_name": "Amar", "last_name": "Hodžić", "email": "amar@campusevents.ba", "faculty": "FENS", "password": "Secret123", "password_confirm": "Secret123", "role": "admin" }
+
+### Who am I?
+GET {{base}}/auth/me
+Authorization: Bearer {{token}}
+
+### Invalid token -> 401
+GET {{base}}/events
+Authorization: Bearer abc.def.ghi
+
+### Token check by hand (version 1)
+GET {{base}}/v1/my-registrations
+Authorization: Bearer {{token}}
+
+### ---------- Resources (send the token every time) ----------
+
+### All events
+GET {{base}}/events
+Authorization: Bearer {{token}}
+
+### One event
+GET {{base}}/events/1
+Authorization: Bearer {{token}}
+
+### Reviews of an event
+GET {{base}}/events/9/reviews
+Authorization: Bearer {{token}}
+
+### Create an event
+POST {{base}}/events
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "title": "Intro to Docker Workshop",
+  "club_id": 2,
+  "category_id": 2,
+  "location": "FENS Lab 1",
+  "starts_at": "2026-12-03 17:00",
+  "capacity": 25
+}
+
+### Register for an event
+POST {{base}}/registrations
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{ "user_id": 3, "event_id": 12 }
+
+### Dashboard
+GET {{base}}/dashboard
+Authorization: Bearer {{token}}
+
+### Weather forecast (logged in info.log as EXTERNAL API)
+GET {{base}}/weather/forecast?city=Mostar
+Authorization: Bearer {{token}}
+
+### ---------- Step-by-step versions ----------
+
+### v1 – not found, but status 200
+GET {{base}}/event_by_id?id=999
+Authorization: Bearer {{token}}
+
+### v1 – invalid, but status 200
+POST {{base}}/add_event
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{ "title": "" }
+
+### v2 – 404
+GET {{base}}/v2/events/999
+Authorization: Bearer {{token}}
+
+### v2 – 400
+POST {{base}}/v2/events
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{ "title": "" }
+
+### ---------- Two-factor authentication & SSO (week 07, optional) ----------
+
+### 1. Start 2FA setup (as the logged-in user) -> secret + otpauth:// link (scan as QR code in an authenticator app)
+POST {{base}}/auth/2fa/setup
+Authorization: Bearer {{token}}
+
+### 2. Enable with the 6-digit code from the app
+POST {{base}}/auth/2fa/enable
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{ "code": "123456" }
+
+### 3. Login without code -> { "two_factor_required": true } (no token!)
+POST {{base}}/auth/login
+Content-Type: application/json
+
+{ "email": "admin@campusevents.ba", "password": "Admin123!" }
+
+### 4. Login with code -> token
+POST {{base}}/auth/login
+Content-Type: application/json
+
+{ "email": "admin@campusevents.ba", "password": "Admin123!", "code": "123456" }
+
+### Google SSO (needs GOOGLE_CLIENT_ID; without it -> 503)
+POST {{base}}/auth/google
+Content-Type: application/json
+
+{ "id_token": "paste-the-id-token-from-google-identity-services" }
+
+### ---------- Authorization (week 08) ----------
+
+### Log in as a student
+# @name student
+POST {{base}}/auth/login
+Content-Type: application/json
+
+{ "email": "lana@campusevents.ba", "password": "Student123!" }
+
+###
+@student_token = {{student.response.body.token}}
+
+### Student creates an event -> 403
+POST {{base}}/events
+Authorization: Bearer {{student_token}}
+Content-Type: application/json
+
+{ "title": "Not allowed", "club_id": 1, "category_id": 1, "location": "Hall", "starts_at": "2026-12-03 17:00", "capacity": 10 }
+
+### Role checked by hand (version 1) -> 403
+DELETE {{base}}/v1/categories/5
+Authorization: Bearer {{student_token}}
+
+### Student sees only her own registrations
+GET {{base}}/registrations
+Authorization: Bearer {{student_token}}
+
+### Student opens Ema's registration (id 1) -> 403
+GET {{base}}/registrations/1
+Authorization: Bearer {{student_token}}
+
+### Student registers – user_id 2 in the body is IGNORED, the registration belongs to Lana
+POST {{base}}/registrations
+Authorization: Bearer {{student_token}}
+Content-Type: application/json
+
+{ "user_id": 2, "event_id": 12 }
+
+### Student checks herself in -> 403 (admins only)
+PUT {{base}}/registrations/6/attend
+Authorization: Bearer {{student_token}}
+
+### Student deletes Ema's review (id 1) -> 403
+DELETE {{base}}/reviews/1
+Authorization: Bearer {{student_token}}
+
+### Student dashboard (personal numbers)
+GET {{base}}/dashboard
+Authorization: Bearer {{student_token}}
+
+### Student lists users -> 403
+GET {{base}}/users
+Authorization: Bearer {{student_token}}
+
+### Admin deletes own account -> 400
+DELETE {{base}}/users/1
+Authorization: Bearer {{token}}

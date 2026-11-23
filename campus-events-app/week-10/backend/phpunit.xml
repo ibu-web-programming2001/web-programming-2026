@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit bootstrap="tests/bootstrap.php" colors="true" cacheDirectory=".phpunit.cache">
+    <testsuites>
+        <!-- Fast tests of the business logic. No database, no server (DAOs are mocked). -->
+        <testsuite name="unit">
+            <directory>tests/unit</directory>
+        </testsuite>
+        <!-- Real HTTP requests against a RUNNING API (php -S localhost:8000 server.php) + database. -->
+        <testsuite name="api">
+            <directory>tests/api</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>

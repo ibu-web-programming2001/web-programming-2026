@@ -1,0 +1,71 @@
+<div class="page-header">
+    <div>
+        <h1 class="page-title">Clubs</h1>
+        <p class="page-subtitle">Student clubs that organise events on campus.</p>
+    </div>
+    <button class="btn btn-primary admin-only" id="add-club-button">
+        <i class="bi bi-plus-lg me-1"></i> Add club
+    </button>
+</div>
+
+<!-- Rendered by DataTables from the API -->
+<div class="card">
+    <div class="card-body">
+        <div class="table-responsive">
+        <table class="table table-hover w-100" id="clubs-table"></table>
+        </div>
+    </div>
+</div>
+
+<!-- Add / edit modal -->
+<div class="modal fade" id="club-modal" tabindex="-1" aria-labelledby="club-modal-title" aria-hidden="true">
+    <div class="modal-dialog">
+        <form class="modal-content" id="club-form" novalidate>
+            <div class="modal-header">
+                <h5 class="modal-title" id="club-modal-title">Add club</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" name="id">
+                <div class="mb-3">
+                    <label class="form-label" for="club-name">Name</label>
+                    <input type="text" class="form-control" id="club-name" name="name" >
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="club-faculty">Faculty</label>
+                    <input type="text" class="form-control" id="club-faculty" name="faculty" placeholder="e.g. FENS">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="club-founded">Founded (year)</label>
+                    <input type="number" class="form-control" id="club-founded" name="founded_year" >
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="club-description">Description</label>
+                    <textarea class="form-control" id="club-description" name="description" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Delete confirmation modal -->
+<div class="modal fade" id="delete-club-modal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Delete club</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">Are you sure you want to delete <strong id="delete-club-name"></strong>?</div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger" id="confirm-delete-club">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+

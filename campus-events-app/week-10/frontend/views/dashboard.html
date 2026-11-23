@@ -1,0 +1,38 @@
+<div class="page-header">
+    <div>
+        <h1 class="page-title" id="dashboard-greeting">Welcome back</h1>
+        <p class="page-subtitle" id="dashboard-subtitle"></p>
+    </div>
+    <a href="#events" class="btn btn-primary"><i class="bi bi-calendar-event me-1"></i> Browse events</a>
+</div>
+
+<!-- Stat cards – rendered by DashboardPage from GET /dashboard -->
+<div class="row g-3 mb-4" id="dashboard-stats"></div>
+
+<div class="row g-3">
+    <div class="col-lg-8 admin-only">
+        <div class="card h-100">
+            <div class="card-header">Registrations per category</div>
+            <div class="card-body"><div id="registrations-chart" style="height: 300px"></div></div>
+        </div>
+    </div>
+
+    <div class="col-lg-4" id="starting-soon-column">
+        <div class="card h-100">
+            <div class="card-header" id="starting-soon-title">Starting soon</div>
+            <ul class="list-group list-group-flush" id="starting-soon-list"></ul>
+        </div>
+    </div>
+</div>
+
+<!-- External API feature -->
+<div class="card mt-3">
+    <div class="card-body d-flex flex-wrap align-items-center gap-3">
+        <div class="stat-icon bg-soft-sky"><i class="bi bi-cloud-sun"></i></div>
+        <div class="flex-grow-1">
+            <div class="fw-semibold">Plan with the weather</div>
+            <div class="text-muted small">Forecast for any city, powered by Open-Meteo – perfect for outdoor events.</div>
+        </div>
+        <a href="#discover" class="btn btn-outline-primary">Open weather planner</a>
+    </div>
+</div>

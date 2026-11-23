@@ -1,0 +1,61 @@
+<div class="page-header">
+    <div>
+        <h1 class="page-title">Registrations</h1>
+        <p class="page-subtitle" id="registrations-subtitle">Who is coming to which event.</p>
+    </div>
+    <button class="btn btn-primary admin-only" id="add-registration-button">
+        <i class="bi bi-plus-lg me-1"></i> New registration
+    </button>
+</div>
+
+<!-- Rendered by DataTables from the API -->
+<div class="card">
+    <div class="card-body">
+        <div class="table-responsive">
+        <table class="table table-hover w-100" id="registrations-table"></table>
+        </div>
+    </div>
+</div>
+
+<!-- New registration modal (admin) -->
+<div class="modal fade" id="registration-modal" tabindex="-1" aria-labelledby="registration-modal-title" aria-hidden="true">
+    <div class="modal-dialog">
+        <form class="modal-content" id="registration-form" novalidate>
+            <div class="modal-header">
+                <h5 class="modal-title" id="registration-modal-title">New registration</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label class="form-label" for="registration-user">Student</label>
+                    <select class="form-select" id="registration-user" name="user_id"></select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="registration-event">Event <span class="text-muted">(upcoming, with free seats)</span></label>
+                    <select class="form-select" id="registration-event" name="event_id"></select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-primary">Register</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Delete confirmation modal (admin) -->
+<div class="modal fade" id="delete-registration-modal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Delete registration</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">Are you sure you want to delete <strong id="delete-registration-name"></strong>?</div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger" id="confirm-delete-registration">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
